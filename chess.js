@@ -1,9 +1,14 @@
 window.onload = function() {
 	var me = false;
 	var chessBoard = [];
+	var over = false;
 
 	//赢法数组
 	var wins = [];
+
+	//赢法的统计数组
+	var myWin = [];
+	var computerWin = [];
 
 	for (var i=0; i< 16; i++) {
 		wins[i] = [];
@@ -25,13 +30,13 @@ window.onload = function() {
 	for (var i=0; i<16; i++) {
 		for (var j=0; j<12; j++) {
 			for (var k=0; k<5; k++) {
-				wins[i+k][j][count] = true;
+				wins[j+k][i][count] = true;
 			}
 			count++;
 		}
 	}
 
-	for (var i=0; i<16; i++) {
+	for (var i=0; i<12; i++) {
 		for (var j=0; j<12; j++) {
 			for (var k=0; k<5; k++) {
 				wins[i+k][j+k][count] = true;
@@ -40,7 +45,7 @@ window.onload = function() {
 		}
 	}
 
-	for (var i=0; i<16; i++) {
+	for (var i=0; i<12; i++) {
 		for (var j=15; j>3; j--) {
 			for (var k=0; k<5; k++) {
 				wins[i+k][j-k][count] = true;
@@ -52,6 +57,13 @@ window.onload = function() {
 	console.log(count);
 
 	/*********************************/
+
+	for (var i=0; i<count; i++) {
+		myWin[i] = 0;
+		computerWin[i] = 0;
+	}
+
+	/********************************/
 	for (var i=0; i<16; i++) {
 		chessBoard[i] = [];
 		for (var j=0; j<16; j++) {
@@ -71,6 +83,9 @@ window.onload = function() {
 	}
 
 	canvas.onclick = function(e) {
+		if (over) {
+			return;
+		}
 		var x = e.offsetX,
 			y = e.offsetY,
 			i = Math.floor(x / 40),
@@ -83,6 +98,16 @@ window.onload = function() {
 					chessBoard[i][j] = 2;
 				}
 				me = !me;
+				for (var k=0; k<count; k++) {
+					if(wins[i][j][k]) {
+						myWin[k]++;
+						computerWin[k] = 6;
+						if(myWind[k]==5) {
+							window.alert("你赢了");
+							over = true;
+						}
+					}
+				}
 			}
 	}
 	// oneStep(3, 4, true);
