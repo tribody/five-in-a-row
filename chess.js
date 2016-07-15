@@ -1,6 +1,57 @@
 window.onload = function() {
 	var me = false;
 	var chessBoard = [];
+
+	//赢法数组
+	var wins = [];
+
+	for (var i=0; i< 16; i++) {
+		wins[i] = [];
+		for (var j=0; j<16; j++) {
+			wins[i][j] = [];
+		}
+	}
+
+	var count = 0;
+	for (var i=0; i<16; i++) {
+		for (var j=0; j<12; j++) {
+			for (var k=0; k<5; k++) {
+				wins[i][j+k][count] = true;
+			}
+			count++;
+		}
+	}
+
+	for (var i=0; i<16; i++) {
+		for (var j=0; j<12; j++) {
+			for (var k=0; k<5; k++) {
+				wins[i+k][j][count] = true;
+			}
+			count++;
+		}
+	}
+
+	for (var i=0; i<16; i++) {
+		for (var j=0; j<12; j++) {
+			for (var k=0; k<5; k++) {
+				wins[i+k][j+k][count] = true;
+			}
+			count++;
+		}
+	}
+
+	for (var i=0; i<16; i++) {
+		for (var j=15; j>3; j--) {
+			for (var k=0; k<5; k++) {
+				wins[i+k][j-k][count] = true;
+			}
+			count++;
+		}
+	}
+
+	console.log(count);
+
+	/*********************************/
 	for (var i=0; i<16; i++) {
 		chessBoard[i] = [];
 		for (var j=0; j<16; j++) {
