@@ -17,7 +17,9 @@ window.onload = function() {
 		}
 	}
 
+	//统计所有的赢法
 	var count = 0;
+	//行所有赢法
 	for (var i=0; i<16; i++) {
 		for (var j=0; j<12; j++) {
 			for (var k=0; k<5; k++) {
@@ -26,7 +28,7 @@ window.onload = function() {
 			count++;
 		}
 	}
-
+	//列所有赢法
 	for (var i=0; i<16; i++) {
 		for (var j=0; j<12; j++) {
 			for (var k=0; k<5; k++) {
@@ -35,7 +37,7 @@ window.onload = function() {
 			count++;
 		}
 	}
-
+	//正斜对角所有赢法
 	for (var i=0; i<12; i++) {
 		for (var j=0; j<12; j++) {
 			for (var k=0; k<5; k++) {
@@ -44,7 +46,7 @@ window.onload = function() {
 			count++;
 		}
 	}
-
+	//反斜对角所有赢法
 	for (var i=0; i<12; i++) {
 		for (var j=15; j>3; j--) {
 			for (var k=0; k<5; k++) {
@@ -138,18 +140,18 @@ window.onload = function() {
 							} else if(myWin[k] == 2) {
 								myScore[i][j] += 400;
 							} else if(myWin[k] == 3) {
-								myScore[i][k] += 2000;
+								myScore[i][j] += 2000;
 							} else if(myWin[k] == 4) {
-								myScore[i][k] += 10000;
+								myScore[i][j] += 10000;
 							}
 							if(computerWin[k] == 1) {
 								computerScore[i][j] += 220;
 							} else if(computerWin[k] == 2) {
 								computerScore[i][j] += 420;
 							} else if(computerWin[k] == 3) {
-								computerScore[i][k] += 2100;
+								computerScore[i][j] += 2100;
 							} else if(computerWin[k] == 4) {
-								computerScore[i][k] += 20000;
+								computerScore[i][j] += 20000;
 							}
 						}
 					}
@@ -201,13 +203,13 @@ window.onload = function() {
 		context.closePath();
 		if (role) {
 			var gradient = context.createRadialGradient(20 + 40 * i, 20 + 40 * j, 5, 20 + 40 * i, 20 + 40 * j, 15)
-			gradient.addColorStop(0, "#ffffff");
-			gradient.addColorStop(1, "#cccccc");
+			gradient.addColorStop(0, "#cccccc");
+			gradient.addColorStop(1, "#000000");
 			context.fillStyle = gradient;
 		} else {
 			var gradient = context.createRadialGradient(20 + 40 * i, 20 + 40 * j, 5, 20 + 40 * i, 20 + 40 * j, 15)
-			gradient.addColorStop(0, "#cccccc");
-			gradient.addColorStop(1, "#000000");
+			gradient.addColorStop(0, "#ffffff");
+			gradient.addColorStop(1, "#cccccc");
 			context.fillStyle = gradient;
 		}
 		context.fill();
